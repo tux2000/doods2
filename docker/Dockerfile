@@ -10,6 +10,10 @@ COPY --from=docker.io/snowzach/doods2:base-config /opt/doods/config.yaml /opt/do
 
 WORKDIR /opt/doods
 
+# Install dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
 ADD . .
 
 ENV TF_CPP_MIN_LOG_LEVEL=3
